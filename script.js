@@ -10,10 +10,14 @@ const barsEl = document.getElementById('bars');
 const historyEl = document.getElementById('historyList');
 const resetBtn = document.getElementById('resetBtn');
 
-// Углы поворота кубика, чтобы нужная грань смотрела на нас
+// Углы поворота кубика, чтобы нужная грань смотрела на нас.
+// ВАЖНО: в CSS transform грани rotateX(...) translateZ(...) — translateZ применяется ПЕРВЫМ,
+// поэтому и итоговый поворот кубика должен применяться в обратном порядке: сначала Y, потом X
+// (в строке transform это записывается как "rotateY() rotateX()"). Иначе оси X-поворота
+// оказываются повёрнутыми вокруг Y, и для 5/6 на экран приезжает не та грань.
 const faceAngles = {
   1: { x: 0,   y: 0 },     // front
-  2: { x: 0,   y: 180 },   // back
+  2: { x: 0,   y: -180 },  // back
   3: { x: 0,   y: -90 },   // right
   4: { x: 0,   y: 90 },    // left
   5: { x: -90, y: 0 },     // top
@@ -97,7 +101,7 @@ function roll() {
   fullSpins += spins * 360;
 
   dice.style.transform =
-    `rotateX(${angle.x + fullSpins}deg) rotateY(${angle.y + fullSpins}deg)`;
+    `rotateY(${angle.y + fullSpins}deg) rotateX(${angle.x}deg)`;
 
   // Ждём окончания CSS-анимации вращения (1.2s), затем показываем очко
   setTimeout(() => {
