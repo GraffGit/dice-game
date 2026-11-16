@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎲 Подбрось кубик</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Канвас поверх всего для конфетти -->
+  <canvas id="confetti"></canvas>
+
+  <div class="card">
+    <h1>🎲 Подбрось кубик</h1>
+    <p class="hint">Нажми на кнопку или пробел — и узнай свою судьбу</p>
+
+    <!-- Сам кубик: 6 сторон с точками -->
+    <div class="scene">
+      <div class="shadow"></div>
+      <div class="dice" id="dice">
+        <div class="face front"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="face back"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="face right"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="face left"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="face top"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="face bottom"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+
+    <!-- Крупное выпавшее очко с анимацией -->
+    <div class="score" id="score"></div>
+
+    <div class="result" id="result">Кубик ждёт броска…</div>
+
+    <button id="rollBtn">Бросить!</button>
+
+    <!-- Статистика -->
+    <section class="stats">
+      <h2>Статистика</h2>
+      <div class="stats-top">
+        <div class="stat"><b id="totalRolls">0</b><span>бросков</span></div>
+        <div class="stat"><b id="avgRoll">—</b><span>среднее</span></div>
+        <div class="stat"><b id="streak">0</b><span>серия одинаковых</span></div>
+      </div>
+      <div class="bars" id="bars"><!-- столбики частот 1..6 генерит JS --></div>
+      <button class="reset" id="resetBtn">Сбросить статистику</button>
+    </section>
+
+    <!-- История последних бросков -->
+    <section class="history">
+      <h2>История</h2>
+      <div class="history-list" id="historyList">
+        <p class="empty">Пока пусто — сделай первый бросок!</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
