@@ -24,6 +24,9 @@ const faceAngles = {
   6: { x: 90,  y: 0 }      // bottom
 };
 
+// Хэш версии сборки в ссылке на скрипт — лечит агрессивный кэш GitHub Pages
+const BUILD = 'fix-faces-v2';
+
 let rolling = false;
 let fullSpins = 0; // копим полные обороты, чтобы анимация всегда шла "вперёд"
 
@@ -114,6 +117,7 @@ function roll() {
     updateStats(value);
     addHistory(value);
     if (value === 6) confetti();
+    console.log(`[dice ${BUILD}] выпало=${value}, трансform кубика:`, dice.style.transform);
 
     rolling = false;
     btn.disabled = false;
